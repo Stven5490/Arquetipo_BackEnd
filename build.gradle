@@ -15,6 +15,9 @@ dependencies {
     testImplementation 'com.intuit.karate:karate-junit5:1.1.0'
 }
 
+test {
+    useJUnitPlatform()
+}
 sourceSets {
     test {
         resources {
@@ -22,15 +25,3 @@ sourceSets {
         }
     }
 }
-
-test {
-    useJUnitPlatform()
-    testLogging.showStandardStreams = true
-    systemProperty "karate.env", System.getProperty("karate.env")
-    systemProperty "karate.options", System.getProperty("karate.options")
-}
-
-task cleanTarget(type: Delete) {
-    delete = "${projectDir}/target"
-}
-clean.dependsOn cleanTarget
