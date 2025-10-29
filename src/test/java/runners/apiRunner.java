@@ -6,6 +6,6 @@ public class apiRunner {
     @Karate.Test
     Karate testAll() {
         //Testear todas las features
-        return Karate.run().relativeTo(getClass());
+        return Karate.run("classpath:features").relativeTo(getClass());
     }
 }

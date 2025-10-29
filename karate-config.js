@@ -4,13 +4,13 @@ function fn() {
 
     if  (env == 'dev') {
         config.servidor = 'https://servidor_DEV/';
-        config.artefacto = 'artefacto';
+        config.artefacto = 'artefacto/';
     } else if (env == 'qa') {
         config.servidor = 'https://servidor_QA/';
-        config.artefacto = 'artefacto';
+        config.artefacto = 'artefacto/';
     } else if (env == 'prod') {
-        config.servidor = 'htps://servidor_PROD';
-        config.artefacto = 'artefacto';
+        config.servidor = 'htps://servidor_PROD/';
+        config.artefacto = 'artefacto/';
     }
 
     karate.log('Corriendo en ambiente: ', env);
