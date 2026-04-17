@@ -1,4 +1,3 @@
-
 name: Ejecutar pruebas Karate por entorno
 
 on:
@@ -35,6 +34,7 @@ jobs:
             echo "KARATE_ENV=prod" >> $GITHUB_ENV
           else
             echo "KARATE_ENV=dev" >> $GITHUB_ENV
+          fi
 
       - name: Ejecutar pruebas Karate
         run: ./gradlew test -Dkarate.env=${{ env.KARATE_ENV }}
