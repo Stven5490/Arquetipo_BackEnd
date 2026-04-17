@@ -1,5 +1,5 @@
 function fn() {
-    var env = karate.env || 'dev'
+    var env = karate.env || 'qa'
     var config = {};
 
     if  (env == 'dev') {
@@ -8,6 +8,7 @@ function fn() {
     } else if (env == 'qa') {
         config.servidor = 'https://servidor_QA/';
         config.artefacto = 'artefacto/';
+        config.poke = 'https://pokeapi.co';
     } else if (env == 'prod') {
         config.servidor = 'htps://servidor_PROD/';
         config.artefacto = 'artefacto/';
