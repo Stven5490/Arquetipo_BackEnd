@@ -5,12 +5,15 @@ function fn() {
     if  (env == 'dev') {
         config.servidor = 'https://servidor_DEV/';
         config.artefacto = 'artefacto/';
+        config.pokemon = 'https://pokeapi.co'
     } else if (env == 'qa') {
         config.servidor = 'https://servidor_QA/';
         config.artefacto = 'artefacto/';
+        config.pokemon = 'https://pokeapi.co'
     } else if (env == 'prod') {
         config.servidor = 'htps://servidor_PROD/';
         config.artefacto = 'artefacto/';
+        config.pokemon = 'https://pokeapi.co'
     }
 
     karate.log('Corriendo en ambiente: ', env);
