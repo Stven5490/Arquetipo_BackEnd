@@ -1,11 +1,10 @@
 Feature: Bulbasaur
   Background:
-    * configure ssl = true
     * url pokemon
 
     @id_1 @Bulbasaur
     Scenario: Bulbasaur
-      Given path 'api', 'v2', 'pokemon', 'bulbasaur'
+      Given path '/api/v2/evolution-chain/1'
       When method GET
       Then status 200
-      * def nroPokemon = response.id
+      * def id = response.id
