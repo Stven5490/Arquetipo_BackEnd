@@ -1,0 +1,68 @@
+name: Bloquear Pull Requests
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+
+permissions:
+  pull-requests: write
+  issues: write
+
+jobs:
+  cerrar-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Comentar y cerrar PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            const mensaje = `
+            ## PR Rechazado Automáticamente
+
+            Estimad@:
+
+            No se aceptarán más PR en este repositorio. Si desea utilizar los casos de prueba, tome la información y migréla bajo los lineamientos entregados por el COE de QA.
+
+            **Lineamientos BackEnd**
+
+            Saludos.
+            `;
+
+            // Agregar comentario
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: prNumber,
+              body: mensaje
+            });
+
+            // Agregar etiqueta (opcional)
+            try {
+              await github.rest.issues.addLabels({
+                owner,
+                repo,
+                issue_number: prNumber,
+                labels: ['repositorio-deprecado']
+              });
+            } catch (e) {
+              console.log('No fue posible agregar la etiqueta');
+            }
+
+            // Cerrar PR
+            await github.rest.pulls.update({
+              owner,
+              repo,
+              pull_number: prNumber,
+              state: 'closed'
+            });
+
+            console.log(`PR #${prNumber} cerrado.`);
